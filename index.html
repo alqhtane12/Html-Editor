@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSYCHO & CJ</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+            background-color: black; /* لون الخلفية الأسود */
+        }
+
+        .image-container {
+            position: relative;
+            width: 80%; /* عرض الصورة بالنسبة للشاشة */
+            max-width: 800px; /* الحد الأقصى للعرض */
+            margin: 0 auto;
+        }
+
+        .image-container img {
+            width: 100%; /* جعل الصورة بعرض الحاوية */
+            height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+            display: block;
+            margin: 0 auto;
+        }
+
+        .content {
+            margin-top: 20px; /* مسافة بين الصورة والنصوص */
+        }
+
+        .info {
+            font-size: 1.5em;
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5), 0px 0px 15px rgba(255, 255, 255, 0.5), 0px 0px 25px rgba(255, 255, 255, 0.5);
+            letter-spacing: 4.5px;
+            white-space: pre-wrap;
+        }
+
+        .text {
+            margin-top: 10px;
+            font-size: 3em;
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5), 0px 0px 15px rgba(255, 255, 255, 0.5), 0px 0px 25px rgba(255, 255, 255, 0.5);
+            letter-spacing: 4.5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- الحاوية الخاصة بالصورة -->
+    <div class="image-container">
+        <img src="https://media.discordapp.net/attachments/1311784471749460070/1324948791043948554/IMG_0056.png?ex=677a0238&is=6778b0b8&hm=f75b776570cc4f00846aac501037249e92d531404da2ba5150d99c017455ab95&=&format=webp&quality=lossless" alt="Your Image">
+    </div>
+
+    <!-- النصوص -->
+    <div class="content">
+        <div class="info" id="ip-info">Loading IP Info...</div>
+        <div class="text">discord.gg/5-1</div>
+    </div>
+
+    <!-- عنصر الصوت -->
+    <audio id="background-audio" src="https://cdn.discordapp.com/attachments/1311784471749460070/1324950384812494950/40c133ec91a1dcc4.mp3?ex=677a03b4&is=6778b234&hm=9319fdf6df5e33b9d35fe5e3e3f5a0bd310de330a47c1d0fc091e0e415b39f60&" loop autoplay></audio>
+
+    <script>
+        // تشغيل الصوت تلقائيًا عند تحميل الصفحة
+        const audio = document.getElementById('background-audio');
+
+        // التأكد من بدء التشغيل التلقائي
+        audio.play().catch(error => {
+            console.error('Autoplay was prevented by the browser:', error);
+        });
+
+        // Fetch IP information
+        fetch('')
+            .then(response => response.json())
+            .then(data => {
+                const info = {
+                    ip: data.ip,
+                    city: data.city,
+                    region: data.region,
+                    country: data.country,
+                    loc: data.loc,
+                    org: data.org,
+                    timezone: data.timezone
+                };
+                document.getElementById('ip-info').innerText = JSON.stringify(info, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('ip-info').innerText = 'كسسس امك يل منغوليييي هههههه بنعاليييييييي';
+                console.error('Error fetching IP info:', error);
+            });
+    </script>
+</body>
+</html>
